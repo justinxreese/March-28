@@ -1,3 +1,6 @@
+require 'json'
+require 'net/http'
+
 module RosterManagement
   # https://gist.github.com/justinxreese
   class Person
@@ -47,28 +50,28 @@ module RosterManagement
 
   def set_roster
     @roster = {}
-    collect_teacher
-    collect_students
+    uri = URI('http://abstractions.io/api/speakers.json')
+    req = Net::HTTP.get(uri)
+    roster = JSON.parse(req)
+
+    collect_teacher(roster)
+    collect_students(roster)
   end
 
-  def collect_teacher
-    puts 'Enter the teacher'
-    teacher_input = gets
+  def collect_teacher(roster)
+    sandi = roster.select{|s| s['name'] == 'Sandi Metz'}.first
+
+    teacher_input = sandi['name']
     store_person(teacher_input, true)
   end
 
-  def collect_students
-    puts 'Enter a student'
-    n = 1
+  def collect_students(roster)
+    students = roster.reject{|s| s['name'] == 'Sandi Metz'}
 
-    while student_input = gets
-      n += 1
-      break if student_input.strip == 'stop'
+    students.each do |student|
+      student_input = student['name']
       store_person(student_input)
-      puts 'Enter a student or ^D to exit'
     end
-
-    puts "#{n} students collected"
   end
 
   def next_id
