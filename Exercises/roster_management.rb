@@ -1,5 +1,6 @@
 require 'json'
 require 'net/http'
+require 'pry'
 
 module RosterManagement
   # https://gist.github.com/justinxreese
@@ -7,8 +8,7 @@ module RosterManagement
     attr_accessor :first_name, :last_name, :teacher
 
     def initialize(atts)
-      @first_name = atts[:first_name]
-      @last_name = atts[:last_name]
+      @first_name, @last_name = atts['name'].split(' ')
       @teacher = false
     end
 
@@ -18,13 +18,20 @@ module RosterManagement
     end
 
     def display
-      puts it_me?('Justin Reese') ? "Hey, that's me! #{first_name} #{last_name}" : "That's not me."
+      puts "Person"
     end
   end
 
   class Student < Person
+    attr_accessor :classname
+
+    def initialize(atts)
+      super(atts)
+      @classname = atts["talk"]["topic"]
+    end
+
     def display(f)
-      f.puts "Student: #{first_name} #{last_name}"
+      f.puts "#{classname} Student: #{first_name} #{last_name}"
     end
   end
 
@@ -39,11 +46,8 @@ module RosterManagement
     end
   end
 
-  def store_person(name_string, teacher_status = false)
-    first, last = name_string.split(' ')
-    atts = {first_name: first, last_name: last}
-
-    person = teacher_status ? Teacher.new(atts) : Student.new(atts)
+  def store_person(person, teacher_status = false)
+    person = teacher_status ? Teacher.new(person) : Student.new(person)
 
     @roster.store(next_id, person)
   end
@@ -60,17 +64,14 @@ module RosterManagement
 
   def collect_teacher(roster)
     sandi = roster.select{|s| s['name'] == 'Sandi Metz'}.first
-
-    teacher_input = sandi['name']
-    store_person(teacher_input, true)
+    store_person(sandi, true)
   end
 
   def collect_students(roster)
     students = roster.reject{|s| s['name'] == 'Sandi Metz'}
 
     students.each do |student|
-      student_input = student['name']
-      store_person(student_input)
+      store_person(student)
     end
   end
 

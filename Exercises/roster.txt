@@ -1,29 +1,29 @@
 Teacher: ---Sandi Metz---
-Student: Jeffrey Zeldman
-Student: Richard Stallman
-Student: Kelsey Hightower
-Student: Douglas Crockford
-Student: Saron Yitbarek
-Student: Mike Monteiro
-Student: Stephanie Morillo
-Student: Raffi Krikorian
-Student: Eileen Uchitelle
-Student: Mitchell Hashimoto
-Student: Joe Armstrong
-Student: Lyza Danger
-Student: Casey West
-Student: Larry Wall
-Student: Matt Griffin
-Student: Allison Randal
-Student: Petro Salema
-Student: José Valim
-Student: Andrew Clay
-Student: Aaron Patterson
-Student: Brad Frost
-Student: Scott Hanselman
-Student: Lara Schenck
-Student: Joshua Suereth
-Student: Bryan Liles
-Student: Seth Vargo
-Student: Jono Bacon
-Student: Nadia Odunayo
+design Student: Jeffrey Zeldman
+community Student: Richard Stallman
+devops Student: Kelsey Hightower
+development Student: Douglas Crockford
+community Student: Saron Yitbarek
+design Student: Mike Monteiro
+community Student: Stephanie Morillo
+community Student: Raffi Krikorian
+development Student: Eileen Uchitelle
+devops Student: Mitchell Hashimoto
+development Student: Joe Armstrong
+development Student: Lyza Danger
+devops Student: Casey West
+development Student: Larry Wall
+design Student: Matt Griffin
+development Student: Allison Randal
+design Student: Petro Salema
+development Student: José Valim
+devops Student: Andrew Clay
+development Student: Aaron Patterson
+design Student: Brad Frost
+development Student: Scott Hanselman
+design Student: Lara Schenck
+development Student: Joshua Suereth
+development Student: Bryan Liles
+devops Student: Seth Vargo
+community Student: Jono Bacon
+development Student: Nadia Odunayo
