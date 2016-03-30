@@ -20,8 +20,8 @@ module RosterManagement
   end
 
   class Student < Person
-    def display
-      puts "Student: #{first_name} #{last_name}"
+    def display(f)
+      f.puts "Student: #{first_name} #{last_name}"
     end
   end
 
@@ -31,14 +31,11 @@ module RosterManagement
       @teacher = true
     end
 
-    def display
-      puts "Teacher: ---#{first_name} #{last_name}---"
+    def display(f)
+      f.puts "Teacher: ---#{first_name} #{last_name}---"
     end
   end
 
-  my_name = 'Justin Reese'
-
-  # https://gist.github.com/justinxreese
   def store_person(name_string, teacher_status = false)
     first, last = name_string.split(' ')
     atts = {first_name: first, last_name: last}
