@@ -1,6 +1,6 @@
-Teacher: ---Sandi Metz---
 design Student: Jeffrey Zeldman
 community Student: Richard Stallman
+Teacher: ---Sandi Metz---
 devops Student: Kelsey Hightower
 development Student: Douglas Crockford
 community Student: Saron Yitbarek

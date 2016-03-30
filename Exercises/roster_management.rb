@@ -11,12 +11,6 @@ module RosterManagement
       @first_name, @last_name = atts['name'].split(' ')
       @teacher = false
     end
-
-    def it_me?(person_string)
-      first, last = person_string.split(' ')
-      first_name == first and last_name == last
-    end
-
     def display
       puts "Person"
     end
@@ -52,26 +46,15 @@ module RosterManagement
     @roster.store(next_id, person)
   end
 
-  def set_roster
+  def set_roster(roster_function)
     @roster = {}
-    uri = URI('http://abstractions.io/api/speakers.json')
-    req = Net::HTTP.get(uri)
-    roster = JSON.parse(req)
-
-    collect_teacher(roster)
-    collect_students(roster)
+    collect_roster(roster_function.call, 'Sandi Metz')
   end
 
-  def collect_teacher(roster)
-    sandi = roster.select{|s| s['name'] == 'Sandi Metz'}.first
-    store_person(sandi, true)
-  end
-
-  def collect_students(roster)
-    students = roster.reject{|s| s['name'] == 'Sandi Metz'}
-
-    students.each do |student|
-      store_person(student)
+  def collect_roster(roster, teacher_name = false)
+    roster.each do |teacher|
+      is_teacher = (teacher['name'] == teacher_name) && teacher_name
+      store_person(teacher, is_teacher)
     end
   end
 
